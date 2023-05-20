@@ -1,4 +1,3 @@
-
 rm(list = ls())
 options(stringsAsFactors = F)
 #setwd("C:\\Users\\86147\\Desktop\\SingleGene")
@@ -12,14 +11,13 @@ opt <- paste0("Results/01-getSig-lnRNA/")
 ifelse(dir.exists(opt),FALSE,dir.create(opt,recursive = T))
 
 ###读入基因集
-gss <- read.csv("lcnRNAfenxi/geneset/AA.csv",header = T)[,3] %>% unique()
-
+gss <- read.csv("lcnRNAfenxi/geneset/AAM.csv",header = T)[,3] %>% unique()
 
 ##加载基因注释信息，加载后的变量名为：hsaGeneInfo
 load("./02-base_files/hsaGeneInfo.Rdata")
 
 ###TCGA数据库中UCEC癌症数据
-  load("./01-data/02-TCGA-RNASeq-TPM/TCGA-UCEC_RNASeq_TPM.RData") #加载表达数据expDataTPM
+  load("./01-data/TCGA-UCEC_RNASeq_TPM.RData") #加载表达数据expDataTPM
   dim(expDataTPM)
   head(expDataTPM)[,1:3]
   SamN <- TCGAquery_SampleTypes(barcode = colnames(expDataTPM),
